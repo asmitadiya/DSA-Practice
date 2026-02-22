@@ -4,4 +4,8 @@ package strings;
 from the string and return the result
  */
 public class SkipChar {
+    static void main() {
+        String s = "aabbbcgdhaacc";
+        System.out.println();
+    }
 }
