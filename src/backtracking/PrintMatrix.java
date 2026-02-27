@@ -15,22 +15,23 @@ public class PrintMatrix {
 
         int[][] path = new int[maze.length][maze[0].length];
 
-        System.out.println(Arrays.toString(mazeAllPaths("",maze ,0,0,path , 1)));
+        mazeAllPaths("",maze ,0,0,path , 1);
     }
 
-    static int[] mazeAllPaths(String p , boolean[][] maze , int r , int c, int[][] path , int step){
+    static void mazeAllPaths(String p , boolean[][] maze , int r , int c, int[][] path , int step){
 
         if(r == maze.length-1 && c == maze[0].length-1){
-            int[] result = new int[path.length];
+            path[r][c] = step;
             for(int[] arr : path){
-                result = arr;
+                System.out.println(Arrays.toString(arr));
             }
-            return result;
+            System.out.println(p);
+            return;
         }
 
         //if the cell is false (means it is already visited) , then it should return to previous call
         if(!maze[r][c]){
-            return new int[maze.length];
+            return;
         }
 
         //if it is not false , then that means I am considering this cell in my path
@@ -38,21 +39,20 @@ public class PrintMatrix {
         maze[r][c] = false;
         path[r][c] = step;
 
-        int[] arr = new int[maze.length];
 
         if(r<maze.length-1){
-            arr = mazeAllPaths(p+"D", maze, r+1 , c,path,step+1);
+            mazeAllPaths(p+"D", maze, r+1 , c,path,step+1);
         }
 
         if(c<maze[0].length-1){
-            arr =mazeAllPaths(p+"R", maze, r , c+1,path,step+1);
+            mazeAllPaths(p+"R", maze, r , c+1,path,step+1);
         }
         if(r>0){
-            arr = mazeAllPaths(p+"U", maze, r-1 , c,path,step+1);
+            mazeAllPaths(p+"U", maze, r-1 , c,path,step+1);
         }
 
         if(c>0){
-            arr = mazeAllPaths(p+"L", maze, r , c-1,path,step+1);
+            mazeAllPaths(p+"L", maze, r , c-1,path,step+1);
         }
 
         //this is where the function will be over
@@ -61,6 +61,5 @@ public class PrintMatrix {
         maze[r][c] = true;
         path[r][c] = 0;
 
-        return arr;
     }
 }

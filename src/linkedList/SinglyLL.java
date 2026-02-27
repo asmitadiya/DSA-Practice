@@ -47,6 +47,22 @@ public class SinglyLL {
 
     }
 
+    public void insertRecursion(){
+        head =  insertRecursion(3,7,head);
+    }
+
+    private Node insertRecursion(int indexToInsert , int valOfNodeToInsert , Node currentNode){
+
+        if(indexToInsert == 0){
+            Node n = new Node(valOfNodeToInsert , currentNode);
+            size++;
+            return n ;
+        }
+
+        currentNode.next = insertRecursion(indexToInsert--, valOfNodeToInsert,currentNode.next);
+        return currentNode;
+    }
+
     public void display(){
         Node temp = head;
         while(temp != null){
