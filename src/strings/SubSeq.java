@@ -8,7 +8,7 @@ use both the approaches where return type is void and ArrayList<String>
  */
 public class SubSeq {
     static void main() {
-        String s = "ahbgdc";
+        String s = "abcabcbb";
         ArrayList<String> l = helper("",s);
 
         System.out.println(l);
